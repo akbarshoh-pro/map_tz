@@ -8,6 +8,7 @@ import '../../../utils/location_status.dart';
 import '../../blocs/saved_locations/saved_locations_bloc.dart';
 import '../../blocs/saved_locations/saved_locations_event.dart';
 import '../../blocs/select_location/select_location_bloc.dart';
+import '../polylines/polyline_map.dart';
 import '../saved_locations/saved_locations_screen.dart';
 import '../select_location/select_location_screen.dart';
 
@@ -49,12 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFf1f1f1),
-        title: const Text(
-            "Generate road"
-        )
-      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -145,7 +140,12 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 12),
               GestureDetector(
                 onTap: () {
-
+                  Navigator.push(
+                    context,
+                      MaterialPageRoute(builder: (ctx){
+                        return PolylineMap(myLocation: myLocation, nextLocation: nextLocation);
+                      })
+                  );
                 },
                 child: Container(
                   width: double.maxFinite,
